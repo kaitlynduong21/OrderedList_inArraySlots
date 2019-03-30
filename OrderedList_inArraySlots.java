@@ -8,6 +8,13 @@ public class OrderedList_inArraySlots{
     list = new List_inArraySlots();
   }
 
+  /** size method
+    @return the number of elements in this list
+   */
+  public int size() {
+      return list.size();
+  }
+
   /** toString method
     @return a string representation of this list,
     in [a,b,c,] format
@@ -23,12 +30,13 @@ public class OrderedList_inArraySlots{
    */
 
   public boolean add(int value){
-    if (list.size() == 0) {
+    if (size() == 0 || value >= list.get(size() - 1)) {
       list.add(value);
     } else {
-      for (int i = 0; i < list.size(); i++) {
-        if (value >= list.get(i)) {
-          list.add(i + 1, value);
+      for (int i = 0; i < size(); i++) {
+        if (value <= list.get(i)) {
+          list.add(i, value);
+          i = size();
         }
       }
     }
