@@ -4,8 +4,8 @@ public class OrderedList_inArraySlots{
   private List_inArraySlots list;
 
   //constructor
-  public OrderedList_inArraySlots{
-
+  public OrderedList_inArraySlots(){
+    list = new List_inArraySlots();
   }
 
   /** toString method
@@ -14,7 +14,7 @@ public class OrderedList_inArraySlots{
    */
 
   public String toString() {
-
+    return list.toString();
   }
 
   /* add method
@@ -23,7 +23,16 @@ public class OrderedList_inArraySlots{
    */
 
   public boolean add(int value){
-
+    if (list.size() == 0) {
+      list.add(value);
+    } else {
+      for (int i = 0; i < list.size(); i++) {
+        if (value >= list.get(i)) {
+          list.add(i + 1, value);
+        }
+      }
+    }
+    return true;
   }
 
   /** remove method
@@ -33,8 +42,8 @@ public class OrderedList_inArraySlots{
    @return the value that was removed from the list
   */
 
-  public int remove( int index) {
-
+  public int remove(int index) {
+    return list.remove(index);
   }
 
   /** get method
@@ -46,6 +55,6 @@ public class OrderedList_inArraySlots{
    */
 
   public int get (int index) {
-
+    return list.get(index);
   }
 }

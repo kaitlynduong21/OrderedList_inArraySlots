@@ -42,6 +42,21 @@ public class List_inArraySlots {
 
 
     /**
+      Appends @value to the end of this list.
+      @return true, in keeping with conventions yet to be discussed
+     */
+     public boolean add( int value) {
+         // expand if necessary
+         if( filledElements == elements.length) expand();
+
+         elements[ filledElements] = value;
+         filledElements++;
+         // idiomatic version: elements[ filledElements++] = value;
+        return true;
+}
+
+
+    /**
       Double the capacity of the List_inArraySlots,
       preserving existing data.
      */
@@ -85,6 +100,28 @@ public class List_inArraySlots {
         int saveForReturn = get( index);
         elements[ index] = newValue;
         return saveForReturn;
+    }
+
+
+    /**
+      Insert @value at position @index in this list.
+      Shift the element currently at that position (if any)
+      and any subsequent elements to the right
+      (that is, increase the index associated with each).
+     */
+    public void add( int index, int value) {
+        if( index == filledElements) // adding at end of list
+            add( value);
+        else {// need space
+             // open up space, expanding if necessary
+             add( elements[ filledElements-1]);
+
+             // move the hole left / shift "subsequent elements" right
+             for( int hole = filledElements-1; hole > index; hole--)
+                 elements[ hole] = elements[ hole-1];
+
+            elements[ index] = value; // store new value
+        }
     }
 
 
